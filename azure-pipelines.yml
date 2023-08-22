@@ -1,6 +1,6 @@
 trigger:
 - main
-pool: MyAgentPool
+pool: mslearn-tailspin-spacegame-web-agent
 
 variables:
   buildConfiguration: 'Release'
