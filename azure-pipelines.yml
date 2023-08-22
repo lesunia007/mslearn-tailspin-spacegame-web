@@ -1,8 +1,7 @@
 trigger:
 - '*'
 
-pool:
-  vmImage: Debug
+pool: Default
 
 variables:
   buildConfiguration: 'Release'
@@ -22,8 +21,12 @@ steps:
 - script: './node_modules/.bin/node-sass Tailspin.SpaceGame.Web/wwwroot --output Tailspin.SpaceGame.Web/wwwroot'
   displayName: 'Compile Sass assets'
 
-- task: gulp@1
-  displayName: 'Run gulp tasks'
+- task: gulp@0
+  inputs:
+    gulpFile: 'gulpfile.js'
+    targets: 
+    gulpjs: 'node_modules/gulp/bin/gulp.js'
+    enableCodeCoverage: false
 
 - script: 'echo "$(Build.DefinitionName), $(Build.BuildId), $(Build.BuildNumber)" > buildinfo.txt'
   displayName: 'Write build info'
