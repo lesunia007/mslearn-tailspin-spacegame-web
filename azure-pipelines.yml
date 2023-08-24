@@ -44,7 +44,7 @@ steps:
     projects: '**/*.csproj'
 
 - task: DotNetCoreCLI@2
-  displayName: 'Publish the project - Release'
+  displayName: 'Publish the project - Release -- $(buildConfiguration) --$(Build.ArtifactStagingDirectory)'
   inputs:
     command: 'publish'
     projects: '**/*.csproj'
