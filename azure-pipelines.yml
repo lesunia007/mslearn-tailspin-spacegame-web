@@ -5,14 +5,13 @@ pool: Default
 
 variables:
   buildConfiguration: 'Release'
-  publishPath: 'C:\Users\lesun\Рабочий стол\vsts-agent-win-x64-3.224.1\_work\1\a'
 
 steps:
 - task: UseDotNet@2
-  displayName: 'Use .NET SDK 5.x'
+  displayName: 'Use .NET SDK 6.x'
   inputs:
     packageType: sdk
-    version: '5.x'
+    version: '6.x'
 
 - task: Npm@1
   displayName: 'Run npm install'
@@ -37,22 +36,14 @@ steps:
     command: 'restore'
     projects: '**/*.csproj'
 
-- task: DotNetCoreCLI@2
-  displayName: 'Build the project - Release'
-  inputs:
-    command: 'build'
-    arguments: '--no-restore --configuration Release'
-    projects: '**/*.csproj'
+- template: templates/build.yml
+  parameters:
+    buildConfiguration: 'Debug'
 
-- task: DotNetCoreCLI@2
-  displayName: 'Publish the project - $(buildConfiguration)'
-  inputs:
-    command: 'publish'
-    projects: '**/*.csproj'
-    publishWebProjects: false
-    arguments: '--configuration $(BuildConfiguration) --output "$(build.artifactstagingdirectory)"'
-    zipAfterPublish: true
-    
+- template: templates/build.yml
+  parameters:
+    buildConfiguration: 'Release'
+
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
   condition: succeeded()
