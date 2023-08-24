@@ -10,7 +10,7 @@ steps:
     projects: '**/*.csproj'
 
 - task: DotNetCoreCLI@2
-  displayName: 'Publish the project - $(Build.ArtifactStagingDirectory)\${{ parameters.buildConfiguration }}\Tailspin.SpaceGame.Web.zip'
+  displayName: 'Publish the project - $(Build.ArtifactStagingDirectory)\Debug\Tailspin.SpaceGame.Web.zip'
   inputs:
     command: 'publish'
     projects: '**/*.csproj'
