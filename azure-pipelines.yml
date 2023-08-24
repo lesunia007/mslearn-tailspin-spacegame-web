@@ -5,6 +5,7 @@ pool: Default
 
 variables:
   buildConfiguration: 'Release'
+  publishPath: 'Tailspin.SpaceGame.Web/wwwroot'
 
 steps:
 - task: UseDotNet@2
@@ -49,7 +50,7 @@ steps:
     command: 'publish'
     projects: '**/*.csproj'
     publishWebProjects: false
-    arguments: '--no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    arguments: '--no-build --configuration $(buildConfiguration) --output$(Build.ArtifactStagingDirectory)'
     zipAfterPublish: true
 
 - task: PublishBuildArtifacts@1
