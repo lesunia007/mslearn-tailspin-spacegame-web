@@ -5,7 +5,7 @@ pool: Default
 
 variables:
   buildConfiguration: 'Release'
-  publishPath: 'Tailspin.SpaceGame.Web/wwwroot'
+  publishPath: 'C:\Users\lesun\Рабочий стол\vsts-agent-win-x64-3.224.1\_work\1\a'
 
 steps:
 - task: UseDotNet@2
@@ -50,9 +50,9 @@ steps:
     command: 'publish'
     projects: '**/*.csproj'
     publishWebProjects: false
-    arguments: '--no-build --configuration $(buildConfiguration) --output$(Build.ArtifactStagingDirectory)'
+    arguments: '--no-build --configuration $(buildConfiguration) -o $(publishPath)/Release'
     zipAfterPublish: true
-
+    
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
   condition: succeeded()
