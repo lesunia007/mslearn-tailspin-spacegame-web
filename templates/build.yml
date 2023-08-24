@@ -1,5 +1,6 @@
 parameters:
   buildConfiguration: 'Release'
+  pathToPublish: '$(Build.ArtifactStagingDirectory)'
 
 steps:
 - task: DotNetCoreCLI@2
@@ -10,10 +11,10 @@ steps:
     projects: '**/*.csproj'
 
 - task: DotNetCoreCLI@2
-  displayName: 'Publish the project - $(Build.ArtifactStagingDirectory)\Debug\Tailspin.SpaceGame.Web.zip'
+  displayName: 'Publish the project - $(pathToPublish)/Debug/Tailspin.SpaceGame.Web.zip'
   inputs:
     command: 'publish'
     projects: '**/*.csproj'
     publishWebProjects: false
-    arguments: '--no-build --configuration ${{ parameters.buildConfiguration }} --output $(Build.ArtifactStagingDirectory)/Debug/*.zip'
+    arguments: '--no-build --configuration ${{ parameters.buildConfiguration }} --output $(pathToPublish)/Debug/Tailspin.SpaceGame.Web.zip'
     zipAfterPublish: true
