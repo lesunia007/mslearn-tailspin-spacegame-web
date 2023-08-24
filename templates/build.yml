@@ -15,5 +15,5 @@ steps:
     command: 'publish'
     projects: '**/*.csproj'
     publishWebProjects: false
-    arguments: '--no-build --configuration ${{ parameters.buildConfiguration }} --output "$(Build.ArtifactStagingDirectory)"//${{ parameters.buildConfiguration }}//Tailspin.SpaceGame.Web.zip'
+    arguments: '--no-build --configuration ${{ parameters.buildConfiguration }} --output "C:\Users\lesun\Рабочий стол\vsts-agent-win-x64-3.224.1\_work\1\a\Debug\Tailspin.SpaceGame.Web.zip"'
     zipAfterPublish: true
